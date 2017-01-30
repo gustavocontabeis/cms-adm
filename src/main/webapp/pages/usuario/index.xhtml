@@ -14,7 +14,6 @@
 
 		<p:growl />
 		<h:form id="usuario">
-			[#{usuarioManagedBean.entity}]
 			<p:focus />
 			<div class="ui-fluid">
 				<p:panelGrid id="pgUsuario" columns="2" layout="grid" columnClasses="ui-grid-col-2, ui-grid-col-10">
@@ -31,7 +30,7 @@
 					<p:selectBooleanCheckbox id="inativo" value="#{usuarioManagedBean.entity.inativo}" />
 
 					<p:outputLabel for="login" value="#{labels['usuario.login']}" />
-					<p:inputText id="login" value="#{usuarioManagedBean.entity.login}" required="true" size="50" maxlength="50" />
+					<p:inputText id="login" value="#{usuarioManagedBean.entity.login}" required="true" size="50" maxlength="50" styleClass="#{not empty usuarioManagedBean.entity.id?'ui-state-disabled':''}"  readonly="#{not empty usuarioManagedBean.entity.id}"/>
 
 					<p:outputLabel for="senha" value="#{labels['usuario.senha']}" rendered="#{empty usuarioManagedBean.entity.id}" />
 					<p:password id="senha" value="#{usuarioManagedBean.entity.senha}" required="true" maxlength="15" feedback="true" rendered="#{empty usuarioManagedBean.entity.id}" />
@@ -48,7 +47,7 @@
 			</div>
 			<p:toolbar>
 				<p:toolbarGroup>
-					<p:commandButton actionListener="#{usuarioManagedBean.novo}" value="Novo" ajax="false" disabled="#{empty usuarioManagedBean.entity.id}" immediate="true" />
+					<p:commandButton actionListener="#{usuarioManagedBean.novo}" value="Novo" ajax="false" disabled="#{empty usuarioManagedBean.entity.id}" immediate="true"  />
 					<p:commandButton actionListener="#{usuarioManagedBean.salvar}" value="Salvar" update="@all" />
 					<p:commandButton actionListener="#{usuarioManagedBean.excluir}" value="Excluir" update="@all" disabled="#{empty usuarioManagedBean.entity.id}" onstart="return confirm('Tem certesa que deseja excluir?')" />
 				</p:toolbarGroup>
@@ -77,6 +76,12 @@
 
 				<p:column headerText="#{labels['usuario.dtUltimoAcesso']}">
 					<h:outputText value="#{item.dtUltimoAcesso}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="#{labels['usuario.perfis']}">
+					<h:outputText value="#{item.perfis}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 				</p:column>

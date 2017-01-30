@@ -75,6 +75,7 @@ public abstract class CrudManagedBean <T extends BaseEntity, D extends BaseDAO<T
 				novo(null);
 				entity.setId(new Long(rowKey));
 				try {
+					BaseEntity entity2 = buscarAntes(entity, rowKey);
 					entity = dao.buscar(new Long(rowKey));
 					buscarApos(entity);
 				} catch (DaoException | NumberFormatException e) {
@@ -159,6 +160,10 @@ public abstract class CrudManagedBean <T extends BaseEntity, D extends BaseDAO<T
 
 	protected void clonarApos() {
 		
+	}
+
+	protected BaseEntity buscarAntes(T entity, String rowKey) {
+		return entity;
 	}
 
 	protected void buscarApos(T entity) {

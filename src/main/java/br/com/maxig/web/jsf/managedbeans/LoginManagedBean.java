@@ -129,6 +129,10 @@ public class LoginManagedBean implements Serializable {
 		return this.usuario != null;
 	}
 
+	public boolean isContemPerfil(String perfis){
+		return isLogado() && usuario.isContemPerfil(perfis.split("\\,"));
+	}
+
 	public Usuario getUsuario() {
 		return usuario;
 	}

@@ -1,6 +1,7 @@
 package br.com.maxig.web.jsf.filters;
 
 import java.io.IOException;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -78,7 +80,7 @@ public class SegurancaFilter implements Filter {
                     } else {
                     	LOGGER.debug("Usuário {} não autorizado a acessar {}", usuario.getLogin(), requestURI!=null?requestURI:"");
                     	//FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Usuário ou senha inválidos."));
-                        redirecionarLogin(request, response);
+                        redirecionarLogin(request, response, "Usuário não autorizado.");
                     }
                 } else {
                 	LOGGER.debug("Nenhum usuário logado. Você será redirecionado para o login.");
@@ -106,10 +108,21 @@ public class SegurancaFilter implements Filter {
     }
 
     private void redirecionarLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    	redirecionarLogin(request, response, null);
+    }
+
+	private void redirecionarLogin(HttpServletRequest request, HttpServletResponse response, String msg) throws IOException {
+		
+//		if(StringUtils.isNotBlank(msg)){
+//			msg = Base64.getUrlEncoder().encodeToString(msg.getBytes());
+//		}else{
+//			msg = StringUtils.EMPTY;
+//		}
+		
         LOGGER.debug("Redirecionado para login com destino a \"{}\".", request.getRequestURI());
         request.getSession(false).setAttribute("destino", request.getRequestURI());
-        response.sendRedirect(request.getContextPath() + FACES_LOGIN_XHTML);
-    }
+        response.sendRedirect(request.getContextPath() + FACES_LOGIN_XHTML + (StringUtils.isNotBlank(msg)?"?msg="+msg:""));
+	}
 
     @Override
     public void destroy() {

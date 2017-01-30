@@ -4,12 +4,13 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.maxig.model.dao.usuarios.PerfilAcessoDAO;
 import br.com.maxig.model.dao.usuarios.UsuarioDAO;
+import br.com.maxig.model.entity.BaseEntity;
 import br.com.maxig.model.entity.usuarios.PerfilAcesso;
 import br.com.maxig.model.entity.usuarios.Usuario;
 
@@ -36,6 +37,7 @@ public class UsuarioManagedBean extends CrudManagedBean<Usuario, UsuarioDAO> {
 
 	@Override
 	protected Usuario novo() {
+		selecionados = null;
 		entity = new Usuario(); 
 		return entity;
 	}
@@ -50,7 +52,18 @@ public class UsuarioManagedBean extends CrudManagedBean<Usuario, UsuarioDAO> {
 		entity.setDtSenha(new Date());
 		return true;
 	}
-
+	
+	@Override
+	protected BaseEntity buscarAntes(Usuario entity, String rowKey) {
+		selecionados = null;
+		return super.buscarAntes(entity, rowKey);
+	}
+	
+	@Override
+	protected void buscarApos(Usuario entity) {
+		selecionados = entity.getPerfisArray();
+	}
+	
 	@Override
 	protected UsuarioDAO getDao() {
 		return dao;
