@@ -1,9 +1,16 @@
 package br.com.maxig.web.jsf.filters;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.Base64;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -32,18 +39,38 @@ public class SegurancaFilter implements Filter {
 	
     private static final String FACES_LOGIN_XHTML = "/pages/login/login.jsf";
     private static final String URL_PATTERN = "";
+    private Properties properties = new Properties();
 
     public SegurancaFilter() {
     }
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        paginasPrivadas.put("/pages/banner/", new String[]{"ADM"});
-        paginasPrivadas.put("/pages/configuracoes/", new String[]{"ADM"});
-        paginasPrivadas.put("/pages/galeria/", new String[]{"ADM"});
-        paginasPrivadas.put("/pages/pagina/", new String[]{"ADM"});
-        paginasPrivadas.put("/pages/perfil/", new String[]{"ADM"});
-        paginasPrivadas.put("/pages/usuario/", new String[]{"ADM"});
+    	properties = new Properties();
+		try {
+			ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+			properties.load(classLoader.getResourceAsStream("seguranca.properties"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Set<Object> keySet = properties.keySet();
+		for (Object object : keySet) {
+			System.out.println(object);
+			if(object instanceof String){
+				String key = (String) object;
+				if(key.startsWith("/")){
+					String property = properties.getProperty(key);
+					System.out.println(property);
+					String[] split = property.split(",");
+					paginasPrivadas.put(key, split);
+				}
+			}
+		}
+//        paginasPrivadas.put("/pages/configuracoes/", new String[]{"USU-ADM"});
+//        paginasPrivadas.put("/pages/galeria/", new String[]{"USU-ADM"});
+//        paginasPrivadas.put("/pages/pagina/", new String[]{"USU-ADM"});
+//        paginasPrivadas.put("/pages/perfil/", new String[]{"USU-ADM"});
+//        paginasPrivadas.put("/pages/usuario/", new String[]{"USU-ADM"});
     }
 
     @Override
@@ -113,11 +140,11 @@ public class SegurancaFilter implements Filter {
 
 	private void redirecionarLogin(HttpServletRequest request, HttpServletResponse response, String msg) throws IOException {
 		
-//		if(StringUtils.isNotBlank(msg)){
-//			msg = Base64.getUrlEncoder().encodeToString(msg.getBytes());
-//		}else{
-//			msg = StringUtils.EMPTY;
-//		}
+		if(StringUtils.isNotBlank(msg)){
+			msg = URLDecoder.decode(msg);
+		}else{
+			msg = StringUtils.EMPTY;
+		}
 		
         LOGGER.debug("Redirecionado para login com destino a \"{}\".", request.getRequestURI());
         request.getSession(false).setAttribute("destino", request.getRequestURI());

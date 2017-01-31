@@ -1,7 +1,12 @@
 package br.com.maxig.web.jsf.managedbeans;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
+import java.net.URLEncoder;
+import java.util.Iterator;
+import java.util.Properties;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -15,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,13 +39,16 @@ public class LoginManagedBean implements Serializable {
 	private String username;
 	private String password;
 	private Usuario usuario;
+	private Properties properties;
 	private String template = "layout-2", fontSize = "12px";
 	@Inject private UsuarioDAO usuarioDAO;
 	@Inject private ConfiguracaoDAO configuracaoDAO;
 	
 	@PostConstruct
-	private void init(){
-	}
+	private void init() throws FileNotFoundException, IOException{
+		properties = new Properties();
+		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+		properties.load(classLoader.getResourceAsStream("seguranca.properties"));	}
 
 	public void login(ActionEvent event) throws IOException, DaoException {
 
@@ -47,8 +56,9 @@ public class LoginManagedBean implements Serializable {
 		
 		if(usuario == null){
 			LOGGER.debug("Usuario {} não confere.", username);
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login inválido", "Login inválido"));
-			redirecionarLogin();
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ops!", "Usuário inexistente"));
+			//redirecionarLogin("Usuário inexistente");
+			return;
 		}
 		
 		if (this.password.equals(usuario.getSenha())) {
@@ -58,7 +68,7 @@ public class LoginManagedBean implements Serializable {
 			HttpSession session = request.getSession();
 			session.setAttribute("usuario", usuario);
 			// request.login(username, password);
-			
+			Properties s;
 			this.usuario = usuario;
 			
 			if(session.getAttribute("destino") != null){
@@ -74,8 +84,8 @@ public class LoginManagedBean implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Bem vindo", username));
 		}else{
 			LOGGER.debug("Usuario {} e senha {} não conferem.", username, password);
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login inválido", "Login inválido"));
-			redirecionarLogin();
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ops!", "Senha inválida"));
+			//redirecionarLogin();
 		}
 
 	}
@@ -87,17 +97,26 @@ public class LoginManagedBean implements Serializable {
 	}
 	
 	private void redirecionarLogin() throws IOException {
+	}
+
+	private void redirecionarLogin(String msg) throws IOException {
+		if(StringUtils.isNotBlank(msg)){
+			msg = URLEncoder.encode(msg);
+		}else{
+			msg = StringUtils.EMPTY;
+		}
+		
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 		HttpServletResponse response = (HttpServletResponse) externalContext.getResponse();
-		response.sendRedirect(request.getContextPath() + "/pages/login/login.jsf");
+		response.sendRedirect(request.getContextPath() + properties.getProperty("page.login")+ (StringUtils.isNotBlank(msg)?"?msg="+msg:"") );
 	}
 
 	private void redirecionarPaginaInicial() throws IOException {
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 		HttpServletResponse response = (HttpServletResponse) externalContext.getResponse();
-		response.sendRedirect(request.getContextPath() + "/pages/configuracoes/");
+		response.sendRedirect(request.getContextPath() + properties.getProperty("pages.configuracoes"));
 	}
 
 	public void logout(ActionEvent event) throws IOException {
