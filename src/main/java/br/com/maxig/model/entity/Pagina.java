@@ -37,11 +37,11 @@ public class Pagina extends BaseEntity {
 	private String descricao;
 
 	@NotEmpty 
-	@Column(name="conteudo", length=5000, nullable=false)
+	@Column(name="conteudo", nullable=false, columnDefinition="LONGVARCHAR")
 	private String conteudo;
 
 	@NotEmpty 
-	@Column(name="intro", length=1000, nullable=false)
+	@Column(name="intro", nullable=false, columnDefinition="LONGVARCHAR")
 	private String intro;
 
 	@NotEmpty 

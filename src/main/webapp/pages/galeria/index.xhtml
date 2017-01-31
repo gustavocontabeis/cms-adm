@@ -70,6 +70,7 @@
 									<h:inputText value="#{item.descricao}" maxlength="120" required="false" style="width: 250px">
 										<p:ajax event="change" listener="#{galeriaManagedBean.atualizar(item)}" />
 									</h:inputText>
+									<h:outputText value="http://localhost:8080/#{request.contextPath}/imagemservlet?id=#{item.id}" />
 					            </h:panelGrid>
 					        </p:panel>
 					    </p:dataGrid>
