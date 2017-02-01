@@ -27,7 +27,7 @@ import br.com.maxig.model.entity.usuarios.Usuario;
 @WebFilter(filterName = "SegurancaFilter", urlPatterns = {"*.jsf"})
 public class SegurancaFilter implements Filter {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(SegurancaFilter.class.getSimpleName());
+	private static final Logger LOGGER = LoggerFactory.getLogger(SegurancaFilter.class.getName());
 	
 	private Map<String, String[]> paginasPrivadas = new HashMap<>();
 	
@@ -81,11 +81,11 @@ public class SegurancaFilter implements Filter {
             LOGGER.debug("------------");
             
             //verifica se é privada e se esta logado e se tem permissao.
-            LOGGER.debug("requestURI: {}", requestURI);
+            LOGGER.debug("Pretende acessar: {}", requestURI);
             String page = getPage(request);
             
             if (paginasPrivadas.containsKey(page)) {
-                LOGGER.debug("É uma página privada.");
+                LOGGER.debug("É uma página privada para {}", paginasPrivadas.get(page));
                 Usuario usuario = (Usuario) getUser(session);
                 if (usuario != null) {
                 	LOGGER.debug("{} está logado.", usuario.getLogin());

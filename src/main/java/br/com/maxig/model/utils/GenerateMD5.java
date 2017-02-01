@@ -5,7 +5,7 @@ import java.security.NoSuchAlgorithmException;
   
 public class GenerateMD5 {
   
-    public static String generate(String toMD5) {
+    public static String generateMD5(String toMD5) {
   
         String generatedPassword = null;
         try {

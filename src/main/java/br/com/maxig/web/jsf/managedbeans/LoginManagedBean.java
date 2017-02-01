@@ -58,7 +58,7 @@ public class LoginManagedBean implements Serializable {
 			return;
 		}
 		
-		String generate = GenerateMD5.generate(this.password);
+		String generate = GenerateMD5.generateMD5(this.password);
 		if (generate.equals(usuario.getSenha())) { 
 			ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 			

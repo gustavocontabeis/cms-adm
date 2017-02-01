@@ -4,10 +4,12 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.event.ActionEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.com.maxig.model.dao.DaoException;
 import br.com.maxig.model.dao.usuarios.PerfilAcessoDAO;
 import br.com.maxig.model.dao.usuarios.UsuarioDAO;
 import br.com.maxig.model.entity.BaseEntity;
@@ -25,7 +27,8 @@ public class UsuarioManagedBean extends CrudManagedBean<Usuario, UsuarioDAO> {
 
 	private List<PerfilAcesso> perfisAcesso;
 	private String[] selecionados;
-	private String confirmeSenha;
+	private String confirmeSenha, senhaAnterior;
+	private boolean trocarSenha = false;
 	
 	@Inject private UsuarioDAO dao;// = new UsuarioDAO();
 	@Inject private PerfilAcessoDAO perfilAcessoDAO;// = new PerfilAcessoDAO();
@@ -45,13 +48,16 @@ public class UsuarioManagedBean extends CrudManagedBean<Usuario, UsuarioDAO> {
 	
 	@Override
 	protected boolean salvarAntes(Usuario entity) {
+		if(trocarSenha){
+			return true;
+		}
 		String perfis = "";
 		for(String selecionado : selecionados){
 			perfis += selecionado+",";
 		}
 		entity.setPerfis(perfis);
 		entity.setDtSenha(new Date());
-		entity.setSenha(GenerateMD5.generate(entity.getSenha()));
+		entity.setSenha(GenerateMD5.generateMD5(entity.getSenha()));
 		return true;
 	}
 	
@@ -64,6 +70,23 @@ public class UsuarioManagedBean extends CrudManagedBean<Usuario, UsuarioDAO> {
 	@Override
 	protected void buscarApos(Usuario entity) {
 		selecionados = entity.getPerfisArray();
+	}
+	
+	public void trocarSenha(ActionEvent evt) throws DaoException {
+		trocarSenha = true;
+		Usuario buscar = dao.buscar(entity.getId());
+		String generateMD5 = GenerateMD5.generateMD5(senhaAnterior);
+		if(!generateMD5.equals(buscar.getSenha())){
+			messageError(null, "A senha anterior não esta correta.");
+			return;
+		}
+		generateMD5 = GenerateMD5.generateMD5(confirmeSenha);
+		if(!generateMD5.equals(GenerateMD5.generateMD5(entity.getSenha()))){
+			messageError(null, "As senhas não estão corretas.");
+			return;
+		}
+		entity.setSenha(generateMD5);
+		salvar(null);
 	}
 	
 	@Override
@@ -93,6 +116,14 @@ public class UsuarioManagedBean extends CrudManagedBean<Usuario, UsuarioDAO> {
 
 	public void setConfirmeSenha(String confirmeSenha) {
 		this.confirmeSenha = confirmeSenha;
+	}
+
+	public String getSenhaAnterior() {
+		return senhaAnterior;
+	}
+
+	public void setSenhaAnterior(String senhaAnterior) {
+		this.senhaAnterior = senhaAnterior;
 	}
 
 	
