@@ -13,6 +13,7 @@ import br.com.maxig.model.dao.usuarios.UsuarioDAO;
 import br.com.maxig.model.entity.BaseEntity;
 import br.com.maxig.model.entity.usuarios.PerfilAcesso;
 import br.com.maxig.model.entity.usuarios.Usuario;
+import br.com.maxig.model.utils.GenerateMD5;
 
 @Named @ViewScoped
 public class UsuarioManagedBean extends CrudManagedBean<Usuario, UsuarioDAO> {
@@ -50,6 +51,7 @@ public class UsuarioManagedBean extends CrudManagedBean<Usuario, UsuarioDAO> {
 		}
 		entity.setPerfis(perfis);
 		entity.setDtSenha(new Date());
+		entity.setSenha(GenerateMD5.generate(entity.getSenha()));
 		return true;
 	}
 	

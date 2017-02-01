@@ -1,6 +1,5 @@
 package br.com.maxig.web.listeners;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.ServletContextEvent;
@@ -10,7 +9,7 @@ import javax.servlet.annotation.WebListener;
 import br.com.maxig.model.dao.DaoException;
 import br.com.maxig.model.dao.usuarios.UsuarioDAO;
 import br.com.maxig.model.entity.usuarios.Usuario;
-import br.com.maxig.model.entity.usuarios.UsuarioPerfil;
+import br.com.maxig.model.utils.GenerateMD5;
 
 @WebListener
 public class AppServletContextListener implements ServletContextListener{
@@ -37,7 +36,9 @@ public class AppServletContextListener implements ServletContextListener{
 		usuario.setDtInativo(null);
 		usuario.setLogin("gustavo");
 		usuario.setPerfis("USU-ADM,WEB,USU");
-		usuario.setSenha("123");
+		String generate = GenerateMD5.generate("123");
+		System.out.println(generate);
+		usuario.setSenha(generate);
 		new UsuarioDAO().salvar(usuario);
 		
 	}

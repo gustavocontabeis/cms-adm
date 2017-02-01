@@ -26,6 +26,7 @@ import br.com.maxig.model.dao.ConfiguracaoDAO;
 import br.com.maxig.model.dao.DaoException;
 import br.com.maxig.model.dao.usuarios.UsuarioDAO;
 import br.com.maxig.model.entity.usuarios.Usuario;
+import br.com.maxig.model.utils.GenerateMD5;
 
 @Named @SessionScoped
 public class LoginManagedBean implements Serializable {
@@ -57,7 +58,8 @@ public class LoginManagedBean implements Serializable {
 			return;
 		}
 		
-		if (this.password.equals(usuario.getSenha())) {
+		String generate = GenerateMD5.generate(this.password);
+		if (generate.equals(usuario.getSenha())) { 
 			ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 			
 			HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
