@@ -1,12 +1,7 @@
 package br.com.maxig.web.jsf.filters;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
-import java.util.Base64;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -34,10 +29,8 @@ public class SegurancaFilter implements Filter {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(SegurancaFilter.class.getSimpleName());
 	
-	public static final String USER = "usuario";
 	private Map<String, String[]> paginasPrivadas = new HashMap<>();
 	
-    private static final String FACES_LOGIN_XHTML = "/pages/login/login.jsf";
     private static final String URL_PATTERN = "";
     private Properties properties = new Properties();
 
@@ -52,6 +45,7 @@ public class SegurancaFilter implements Filter {
 			properties.load(classLoader.getResourceAsStream("seguranca.properties"));
 		} catch (IOException e) {
 			e.printStackTrace();
+			throw new RuntimeException("Arquivo de configuração da segurança não localizado no classpath.");
 		}
 		Set<Object> keySet = properties.keySet();
 		for (Object object : keySet) {
@@ -66,11 +60,6 @@ public class SegurancaFilter implements Filter {
 				}
 			}
 		}
-//        paginasPrivadas.put("/pages/configuracoes/", new String[]{"USU-ADM"});
-//        paginasPrivadas.put("/pages/galeria/", new String[]{"USU-ADM"});
-//        paginasPrivadas.put("/pages/pagina/", new String[]{"USU-ADM"});
-//        paginasPrivadas.put("/pages/perfil/", new String[]{"USU-ADM"});
-//        paginasPrivadas.put("/pages/usuario/", new String[]{"USU-ADM"});
     }
 
     @Override
@@ -107,11 +96,12 @@ public class SegurancaFilter implements Filter {
                     } else {
                     	LOGGER.debug("Usuário {} não autorizado a acessar {}", usuario.getLogin(), requestURI!=null?requestURI:"");
                     	//FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Usuário ou senha inválidos."));
-                        redirecionarLogin(request, response, "Usuário não autorizado.");
+                        redirecionarLogin(request, response, properties.getProperty("msg.usuario.nao.autorizado"));
                     }
                 } else {
                 	LOGGER.debug("Nenhum usuário logado. Você será redirecionado para o login.");
-                	redirecionarLogin(request, response);
+                	//redirecionarLogin(request, response);
+                	redirecionarLogin(request, response, properties.getProperty("msg.acesso.privado"));
                 }
             }else{
             	//LOGGER.debug("É uma página pública.");
@@ -131,24 +121,20 @@ public class SegurancaFilter implements Filter {
         if(session == null){
             return null;
         }
-        return session.getAttribute(USER);
-    }
-
-    private void redirecionarLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    	redirecionarLogin(request, response, null);
+        return session.getAttribute("usuario");
     }
 
 	private void redirecionarLogin(HttpServletRequest request, HttpServletResponse response, String msg) throws IOException {
 		
 		if(StringUtils.isNotBlank(msg)){
-			msg = URLDecoder.decode(msg);
+			msg = URLDecoder.decode(msg, "UTF-8");
 		}else{
 			msg = StringUtils.EMPTY;
 		}
 		
         LOGGER.debug("Redirecionado para login com destino a \"{}\".", request.getRequestURI());
         request.getSession(false).setAttribute("destino", request.getRequestURI());
-        response.sendRedirect(request.getContextPath() + FACES_LOGIN_XHTML + (StringUtils.isNotBlank(msg)?"?msg="+msg:""));
+        response.sendRedirect(request.getContextPath() + properties.getProperty("page.login") + (StringUtils.isNotBlank(msg)?"?msg="+msg:""));
 	}
 
     @Override

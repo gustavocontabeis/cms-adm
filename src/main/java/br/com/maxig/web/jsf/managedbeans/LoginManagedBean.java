@@ -1,11 +1,9 @@
 package br.com.maxig.web.jsf.managedbeans;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URLEncoder;
-import java.util.Iterator;
 import java.util.Properties;
 
 import javax.annotation.PostConstruct;
@@ -42,7 +40,6 @@ public class LoginManagedBean implements Serializable {
 	private Properties properties;
 	private String template = "layout-2", fontSize = "12px";
 	@Inject private UsuarioDAO usuarioDAO;
-	@Inject private ConfiguracaoDAO configuracaoDAO;
 	
 	@PostConstruct
 	private void init() throws FileNotFoundException, IOException{
@@ -57,7 +54,6 @@ public class LoginManagedBean implements Serializable {
 		if(usuario == null){
 			LOGGER.debug("Usuario {} não confere.", username);
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ops!", "Usuário inexistente"));
-			//redirecionarLogin("Usuário inexistente");
 			return;
 		}
 		
@@ -67,8 +63,6 @@ public class LoginManagedBean implements Serializable {
 			HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 			HttpSession session = request.getSession();
 			session.setAttribute("usuario", usuario);
-			// request.login(username, password);
-			Properties s;
 			this.usuario = usuario;
 			
 			if(session.getAttribute("destino") != null){
@@ -85,7 +79,6 @@ public class LoginManagedBean implements Serializable {
 		}else{
 			LOGGER.debug("Usuario {} e senha {} não conferem.", username, password);
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ops!", "Senha inválida"));
-			//redirecionarLogin();
 		}
 
 	}
@@ -96,27 +89,11 @@ public class LoginManagedBean implements Serializable {
 		login(null);
 	}
 	
-	private void redirecionarLogin() throws IOException {
-	}
-
-	private void redirecionarLogin(String msg) throws IOException {
-		if(StringUtils.isNotBlank(msg)){
-			msg = URLEncoder.encode(msg);
-		}else{
-			msg = StringUtils.EMPTY;
-		}
-		
-		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
-		HttpServletResponse response = (HttpServletResponse) externalContext.getResponse();
-		response.sendRedirect(request.getContextPath() + properties.getProperty("page.login")+ (StringUtils.isNotBlank(msg)?"?msg="+msg:"") );
-	}
-
 	private void redirecionarPaginaInicial() throws IOException {
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 		HttpServletResponse response = (HttpServletResponse) externalContext.getResponse();
-		response.sendRedirect(request.getContextPath() + properties.getProperty("pages.configuracoes"));
+		response.sendRedirect(request.getContextPath() + properties.getProperty("page.inicial"));
 	}
 
 	public void logout(ActionEvent event) throws IOException {
@@ -125,7 +102,7 @@ public class LoginManagedBean implements Serializable {
 		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 		request.getSession().invalidate();
 		HttpServletResponse response = (HttpServletResponse) externalContext.getResponse();
-		response.sendRedirect(request.getContextPath() + "/pages/login/login.jsf");
+		response.sendRedirect(request.getContextPath() + properties.getProperty("page.login"));
 	}
 	
 	public String getUsername() {
