@@ -34,9 +34,9 @@ public class AppServletContextListener implements ServletContextListener{
 		usuario.setDtSenha(new Date());
 		usuario.setDtUltimoAcesso(new Date());
 		usuario.setId(null);
-		usuario.setInativo(false);
+		usuario.setDtInativo(null);
 		usuario.setLogin("gustavo");
-		usuario.setPerfis("USU-ADM,USU");
+		usuario.setPerfis("USU-ADM,WEB,USU");
 		usuario.setSenha("123");
 		new UsuarioDAO().salvar(usuario);
 		

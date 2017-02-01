@@ -47,8 +47,9 @@ public class Usuario extends BaseEntity {
 	@Column(name="id_usuario") 
 	private Long id;
 
-	@Column(name="inativo", length=1, nullable=false)
-	private Boolean inativo;
+	@Temporal(TemporalType.DATE)
+	@Column(name="inativo", nullable=true)
+	private Date dtInativo;
 
 	@NotEmpty 
 	@Column(name="login", length=50, nullable=false)
@@ -71,48 +72,6 @@ public class Usuario extends BaseEntity {
 	@Column(name="perfis", length=50, nullable=false)
 	private String perfis;
 
-	public Long getId(){
-		return this.id;
-	}
-	public void setId(Long id){
-		this.id = id;
-	}
-	public Boolean getInativo(){
-		return this.inativo;
-	}
-	public void setInativo(Boolean inativo){
-		this.inativo = inativo;
-	}
-	public String getLogin(){
-		return this.login;
-	}
-	public void setLogin(String login){
-		this.login = login;
-	}
-	public String getSenha(){
-		return this.senha;
-	}
-	public void setSenha(String senha){
-		this.senha = senha;
-	}
-	public Date getDtSenha(){
-		return this.dtSenha;
-	}
-	public void setDtSenha(Date dtSenha){
-		this.dtSenha = dtSenha;
-	}
-	public Date getDtUltimoAcesso(){
-		return this.dtUltimoAcesso;
-	}
-	public void setDtUltimoAcesso(Date dtUltimoAcesso){
-		this.dtUltimoAcesso = dtUltimoAcesso;
-	}
-	public String getPerfis() {
-		return perfis;
-	}
-	public void setPerfis(String perfis) {
-		this.perfis = perfis;
-	}
 	public String[] getPerfisArray() {
 		return StringUtils.isNotBlank(perfis)? perfis.split(",") : new String[0];
 	}
@@ -128,6 +87,48 @@ public class Usuario extends BaseEntity {
     	}
         return false;
     }
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public Date getDtInativo() {
+		return dtInativo;
+	}
+	public void setDtInativo(Date dtInativo) {
+		this.dtInativo = dtInativo;
+	}
+	public String getLogin() {
+		return login;
+	}
+	public void setLogin(String login) {
+		this.login = login;
+	}
+	public String getSenha() {
+		return senha;
+	}
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	public Date getDtSenha() {
+		return dtSenha;
+	}
+	public void setDtSenha(Date dtSenha) {
+		this.dtSenha = dtSenha;
+	}
+	public Date getDtUltimoAcesso() {
+		return dtUltimoAcesso;
+	}
+	public void setDtUltimoAcesso(Date dtUltimoAcesso) {
+		this.dtUltimoAcesso = dtUltimoAcesso;
+	}
+	public String getPerfis() {
+		return perfis;
+	}
+	public void setPerfis(String perfis) {
+		this.perfis = perfis;
+	}
 	
 }
 

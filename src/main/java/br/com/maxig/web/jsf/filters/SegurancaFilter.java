@@ -89,6 +89,13 @@ public class SegurancaFilter implements Filter {
                 Usuario usuario = (Usuario) getUser(session);
                 if (usuario != null) {
                 	LOGGER.debug("{} está logado.", usuario.getLogin());
+                	
+                	if(usuario.getDtInativo() != null){
+                		LOGGER.debug("Usuário {} não autorizado a acessar {} pois esta inativo", usuario.getLogin(), requestURI!=null?requestURI:"");
+                        redirecionarLogin(request, response, properties.getProperty("msg.usuario.nao.autorizado.inativo"));
+                        return;
+                	}
+                	
                     String[] perfis = paginasPrivadas.get(page);
                     if (usuario.isContemPerfil(perfis)) {
                         LOGGER.debug("OK. {} autorizado a acessar {}", usuario.getLogin(), requestURI);
