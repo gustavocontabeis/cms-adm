@@ -26,6 +26,8 @@ import br.com.maxig.model.entity.BaseEntity;
 		@NamedQueries(value={
 				@NamedQuery(name="Usuario-list", query="select obj from Usuario obj "),
 				@NamedQuery(name="Usuario-porId", query="select obj from Usuario obj where obj.id=:id"),
+				@NamedQuery(name="Usuario-porEmail", query="select obj from Usuario obj where obj.email=:email"),
+				@NamedQuery(name="Usuario-porLogin", query="select obj from Usuario obj where obj.login=:login"),
 				@NamedQuery(name="todosUsuario", query="from Usuario"),
 				@NamedQuery(name="Usuario.getUsuarioComPerfis", query=
 					"select obj "
@@ -54,6 +56,10 @@ public class Usuario extends BaseEntity {
 	@NotEmpty 
 	@Column(name="login", length=50, nullable=false)
 	private String login;
+
+	@NotEmpty 
+	@Column(name="email", length=50, nullable=false)
+	private String email;
 
 	@NotEmpty 
 	@Column(name="senha", length=50, nullable=false)
@@ -128,6 +134,12 @@ public class Usuario extends BaseEntity {
 	}
 	public void setPerfis(String perfis) {
 		this.perfis = perfis;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 }

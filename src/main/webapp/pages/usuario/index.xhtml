@@ -29,6 +29,9 @@
 					<p:outputLabel for="login" value="#{labels['usuario.login']}" />
 					<p:inputText id="login" value="#{usuarioManagedBean.entity.login}" required="true" size="50" maxlength="50" styleClass="#{not empty usuarioManagedBean.entity.id?'ui-state-disabled':''}"  readonly="#{not empty usuarioManagedBean.entity.id}"/>
 
+					<p:outputLabel for="email" value="#{labels['usuario.email']}" />
+					<p:inputText id="email" value="#{usuarioManagedBean.entity.email}" required="true" size="50" maxlength="50" />
+
 					<p:outputLabel for="senha" value="#{labels['usuario.senha']}" rendered="#{empty usuarioManagedBean.entity.id}" />
 					<p:password id="senha" value="#{usuarioManagedBean.entity.senha}" required="true" maxlength="15" feedback="true" rendered="#{empty usuarioManagedBean.entity.id}" />
 

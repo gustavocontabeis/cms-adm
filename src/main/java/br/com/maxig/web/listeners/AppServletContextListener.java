@@ -34,10 +34,10 @@ public class AppServletContextListener implements ServletContextListener{
 		usuario.setDtUltimoAcesso(new Date());
 		usuario.setId(null);
 		usuario.setDtInativo(null);
+		usuario.setEmail("gustavos.cadastros@gmail.com");
 		usuario.setLogin("gustavo");
 		usuario.setPerfis("USU-ADM,WEB,USU");
 		String generate = GenerateMD5.generateMD5("123");
-		System.out.println(generate);
 		usuario.setSenha(generate);
 		new UsuarioDAO().salvar(usuario);
 		

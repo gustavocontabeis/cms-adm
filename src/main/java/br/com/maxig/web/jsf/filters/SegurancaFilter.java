@@ -28,9 +28,7 @@ import br.com.maxig.model.entity.usuarios.Usuario;
 public class SegurancaFilter implements Filter {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(SegurancaFilter.class.getName());
-	
 	private Map<String, String[]> paginasPrivadas = new HashMap<>();
-	
     private static final String URL_PATTERN = "";
     private Properties properties = new Properties();
 

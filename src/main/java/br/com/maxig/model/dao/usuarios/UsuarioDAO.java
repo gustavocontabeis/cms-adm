@@ -49,5 +49,33 @@ public class UsuarioDAO extends BaseDAO<Usuario> {
 		return singleResult;
 	}
 
+	public Usuario buscarPorEmail(String email) {
+		Usuario singleResult;
+		try {
+			Session session = getSession();
+			Query query = session.getNamedQuery("Usuario-porEmail");
+			query.setParameter("email", email);
+			singleResult = (Usuario) query.getSingleResult();
+			session.close();
+		} catch (NoResultException e) {
+			return null;
+		}
+		return singleResult;
+	}
+
+	public Usuario buscarPorLogin(String login) {
+		Usuario singleResult;
+		try {
+			Session session = getSession();
+			Query query = session.getNamedQuery("Usuario-porLogin");
+			query.setParameter("login", login);
+			singleResult = (Usuario) query.getSingleResult();
+			session.close();
+		} catch (NoResultException e) {
+			return null;
+		}
+		return singleResult;
+	}
+
 }
 

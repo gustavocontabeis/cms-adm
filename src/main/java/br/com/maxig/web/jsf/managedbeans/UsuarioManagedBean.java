@@ -1,13 +1,28 @@
 package br.com.maxig.web.jsf.managedbeans;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
+import java.util.Random;
 
 import javax.annotation.PostConstruct;
 import javax.faces.event.ActionEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import br.com.maxig.model.dao.DaoException;
 import br.com.maxig.model.dao.usuarios.PerfilAcessoDAO;
@@ -20,10 +35,8 @@ import br.com.maxig.model.utils.GenerateMD5;
 @Named @ViewScoped
 public class UsuarioManagedBean extends CrudManagedBean<Usuario, UsuarioDAO> {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	private static final Logger LOGGER = LoggerFactory.getLogger(UsuarioManagedBean.class.getName());
 
 	private List<PerfilAcesso> perfisAcesso;
 	private String[] selecionados;
@@ -32,11 +45,17 @@ public class UsuarioManagedBean extends CrudManagedBean<Usuario, UsuarioDAO> {
 	
 	@Inject private UsuarioDAO dao;// = new UsuarioDAO();
 	@Inject private PerfilAcessoDAO perfilAcessoDAO;// = new PerfilAcessoDAO();
+	private Properties properties = new Properties();
 	
 	@PostConstruct
 	private void init() {
 		perfisAcesso = perfilAcessoDAO.buscarTodos();
-		//novo();
+		try {
+			properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("email.properties"));
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Arquivo de configuração da segurança não localizado no classpath.");
+		}
 	}
 
 	@Override
@@ -88,6 +107,85 @@ public class UsuarioManagedBean extends CrudManagedBean<Usuario, UsuarioDAO> {
 		entity.setSenha(generateMD5);
 		salvar(null);
 	}
+	
+	/**
+	 * update users set user_pass = '6bf6ffe53e1b042a6f06dec103e30095' where user_name = 'giana'; 
+	 * @param evt
+	 */
+	public String solicitarNovaSenha() {
+		try {
+			if(StringUtils.isBlank(entity.getEmail())){
+				message(null, "Informe o e-mail.");
+				return null;
+			}
+			Usuario buscarPorEmail = null;
+			if(StringUtils.isNotBlank(entity.getEmail()))
+				buscarPorEmail = dao.buscarPorEmail(entity.getEmail());
+				
+			if(buscarPorEmail == null){
+				message(null, entity.getEmail()+" não cadastrado.");
+				return null;
+			}else{
+				entity = buscarPorEmail;
+				String novaSenha = gerarNovaSenha();
+				enviarEmailNovaSenha(novaSenha);
+				message(null, "A nova senha soi enviada para "+ entity.getEmail()+".");
+				entity = new Usuario();
+				return "/pages/login/login.jsf";
+			}
+		} catch (Exception e) {
+			message(e);
+		} 
+		return null;
+	}
+	
+	private void enviarEmailNovaSenha(String novaSenha) throws DaoException, UnsupportedEncodingException, MessagingException {
+		
+		entity.setSenha(GenerateMD5.generateMD5(novaSenha));
+		dao.salvar(entity);
+		
+		final String username = properties.getProperty("email.from");
+		final String password = properties.getProperty("email.password");
+
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+
+		Session session = Session.getInstance(props,
+		  new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username, password);
+			}
+		  });
+
+		try {
+
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(properties.getProperty("email.from")));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(entity.getEmail()));
+			message.setSubject(properties.getProperty("recupera.senha.assunto"));
+			message.setText("Sua nova senha é "+novaSenha);
+
+			Transport.send(message);
+
+			LOGGER.debug("E-mail para criação de nova senha enviado com sucesso.");
+
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	
+	private String gerarNovaSenha() {
+		String novasenha = "";
+		String caracteres = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890";
+		while(novasenha.length()<8)
+			novasenha += caracteres.charAt( new Random().nextInt(caracteres.length()- 1));
+		return novasenha;
+	}
+
 	
 	@Override
 	protected UsuarioDAO getDao() {
