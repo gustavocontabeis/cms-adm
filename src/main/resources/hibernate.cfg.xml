@@ -39,9 +39,9 @@
 		<!-- Drop and re-create the database schema on startup (validate | update | create | create-drop) -->
 		<property name="hbm2ddl.auto">create</property>
 
-		<mapping class="br.com.maxig.model.entity.usuarios.Usuario" />
-		<mapping class="br.com.maxig.model.entity.usuarios.PerfilAcesso" />
-		<mapping class="br.com.maxig.model.entity.usuarios.UsuarioPerfil" />
+		<mapping class="br.com.coder.arqprime.model.entity.usuarios.Usuario" />
+		<mapping class="br.com.coder.arqprime.model.entity.usuarios.PerfilAcesso" />
+		<mapping class="br.com.coder.arqprime.model.entity.usuarios.UsuarioPerfil" />
 		<mapping class="br.com.maxig.model.entity.Banner" />
 		<mapping class="br.com.maxig.model.entity.Pagina" />
 		<mapping class="br.com.maxig.model.entity.Galeria" />

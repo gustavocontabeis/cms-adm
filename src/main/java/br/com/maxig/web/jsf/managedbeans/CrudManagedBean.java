@@ -15,7 +15,7 @@ import org.primefaces.model.SortOrder;
 
 import br.com.maxig.model.dao.BaseDAO;
 import br.com.maxig.model.dao.DaoException;
-import br.com.maxig.model.entity.BaseEntity;
+import br.com.coder.arqprime.model.entity.BaseEntity;
 import br.com.maxig.model.utils.Filtro;
 
 public abstract class CrudManagedBean <T extends BaseEntity, D extends BaseDAO<T>> extends BaseManagedBean {

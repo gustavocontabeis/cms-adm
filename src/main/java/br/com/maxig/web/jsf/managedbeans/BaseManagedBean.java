@@ -14,7 +14,7 @@ import javax.inject.Inject;
 
 import br.com.maxig.model.dao.BaseDAO;
 import br.com.maxig.model.dao.DaoException;
-import br.com.maxig.model.entity.BaseEntity;
+import br.com.coder.arqprime.model.entity.BaseEntity;
 import br.com.maxig.model.utils.Filtro;
 import br.com.maxig.model.utils.I18nUtils;
 

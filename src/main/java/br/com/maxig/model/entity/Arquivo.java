@@ -12,6 +12,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import br.com.coder.arqprime.model.entity.BaseEntity;
+
 @XmlRootElement
 @Entity @Table(name="arquivo")
 @NamedQueries(value={

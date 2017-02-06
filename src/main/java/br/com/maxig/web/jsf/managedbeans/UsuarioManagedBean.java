@@ -12,9 +12,9 @@ import javax.inject.Named;
 import br.com.maxig.model.dao.DaoException;
 import br.com.maxig.model.dao.usuarios.PerfilAcessoDAO;
 import br.com.maxig.model.dao.usuarios.UsuarioDAO;
-import br.com.maxig.model.entity.BaseEntity;
-import br.com.maxig.model.entity.usuarios.PerfilAcesso;
-import br.com.maxig.model.entity.usuarios.Usuario;
+import br.com.coder.arqprime.model.entity.BaseEntity;
+import br.com.coder.arqprime.model.entity.usuarios.PerfilAcesso;
+import br.com.coder.arqprime.model.entity.usuarios.Usuario;
 import br.com.maxig.model.utils.GenerateMD5;
 
 @Named @ViewScoped

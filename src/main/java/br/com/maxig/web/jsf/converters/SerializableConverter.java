@@ -16,7 +16,7 @@ import org.apache.commons.lang.StringUtils;
 
 import br.com.maxig.model.dao.BaseDAO;
 import br.com.maxig.model.dao.DaoException;
-import br.com.maxig.model.entity.BaseEntity;
+import br.com.coder.arqprime.model.entity.BaseEntity;
 
 @FacesConverter("serializableConverter")
 public class SerializableConverter implements Converter {

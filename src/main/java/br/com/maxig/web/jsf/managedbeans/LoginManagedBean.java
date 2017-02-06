@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
 import br.com.maxig.model.dao.ConfiguracaoDAO;
 import br.com.maxig.model.dao.DaoException;
 import br.com.maxig.model.dao.usuarios.UsuarioDAO;
-import br.com.maxig.model.entity.usuarios.Usuario;
+import br.com.coder.arqprime.model.entity.usuarios.Usuario;
 import br.com.maxig.model.utils.GenerateMD5;
 
 @Named @SessionScoped

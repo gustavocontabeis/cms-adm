@@ -6,8 +6,8 @@ import javax.inject.Named;
 
 import org.hibernate.Session;
 
+import br.com.coder.arqprime.model.entity.usuarios.PerfilAcesso;
 import br.com.maxig.model.dao.BaseDAO;
-import br.com.maxig.model.entity.usuarios.PerfilAcesso;
 
 
 @Named

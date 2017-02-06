@@ -35,7 +35,7 @@ import org.hibernate.validator.resourceloading.PlatformResourceBundleLocator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import br.com.maxig.model.entity.BaseEntity;
+import br.com.coder.arqprime.model.entity.BaseEntity;
 import br.com.maxig.model.utils.Filtro;
 import br.com.maxig.model.utils.HibernateUtil;
 

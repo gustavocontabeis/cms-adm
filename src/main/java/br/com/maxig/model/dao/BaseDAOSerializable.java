@@ -26,7 +26,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
-import br.com.maxig.model.entity.BaseEntity;
+import br.com.coder.arqprime.model.entity.BaseEntity;
 import br.com.maxig.model.utils.Filtro;
 import br.com.maxig.model.utils.HibernateUtil;
 

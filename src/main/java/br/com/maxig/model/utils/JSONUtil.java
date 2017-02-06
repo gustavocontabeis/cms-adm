@@ -3,7 +3,7 @@ package br.com.maxig.model.utils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import br.com.maxig.model.entity.BaseEntity;
+import br.com.coder.arqprime.model.entity.BaseEntity;
 
 public class JSONUtil {
 	

@@ -13,7 +13,7 @@ import org.primefaces.model.SortOrder;
 
 import br.com.maxig.model.dao.DaoException;
 import br.com.maxig.model.dao.usuarios.PerfilAcessoDAO;
-import br.com.maxig.model.entity.usuarios.PerfilAcesso;
+import br.com.coder.arqprime.model.entity.usuarios.PerfilAcesso;
 import br.com.maxig.model.utils.Filtro;
 
 @ManagedBean
