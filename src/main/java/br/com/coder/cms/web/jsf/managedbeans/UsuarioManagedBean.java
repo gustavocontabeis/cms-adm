@@ -29,8 +29,8 @@ import br.com.coder.arqprime.model.entity.BaseEntity;
 import br.com.coder.arqprime.model.entity.usuarios.PerfilAcesso;
 import br.com.coder.arqprime.model.entity.usuarios.Usuario;
 import br.com.coder.arqprime.model.utils.GenerateMD5;
-import br.com.coder.cms.model.dao.usuarios.PerfilAcessoDAO;
-import br.com.coder.cms.model.dao.usuarios.UsuarioDAO;
+import br.com.coder.cms.model.dao.app.UsuarioDAO;
+import br.com.coder.cms.model.dao.app.usuarios.PerfilAcessoDAO;
 
 @Named @ViewScoped
 public class UsuarioManagedBean extends CrudManagedBean<Usuario, UsuarioDAO> {

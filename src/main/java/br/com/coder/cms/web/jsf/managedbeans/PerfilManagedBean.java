@@ -14,7 +14,7 @@ import org.primefaces.model.SortOrder;
 import br.com.coder.arqprime.model.dao.DaoException;
 import br.com.coder.arqprime.model.entity.usuarios.PerfilAcesso;
 import br.com.coder.arqprime.model.utils.Filtro;
-import br.com.coder.cms.model.dao.usuarios.PerfilAcessoDAO;
+import br.com.coder.cms.model.dao.app.usuarios.PerfilAcessoDAO;
 
 @ManagedBean
 @ViewScoped

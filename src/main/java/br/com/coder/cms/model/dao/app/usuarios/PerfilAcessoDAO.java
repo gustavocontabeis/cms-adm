@@ -1,4 +1,4 @@
-package br.com.coder.cms.model.dao.usuarios;
+package br.com.coder.cms.model.dao.app.usuarios;
 
 import java.util.List;
 

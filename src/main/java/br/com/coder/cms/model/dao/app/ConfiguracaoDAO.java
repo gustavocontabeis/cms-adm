@@ -1,4 +1,4 @@
-package br.com.coder.cms.model.dao;
+package br.com.coder.cms.model.dao.app;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
