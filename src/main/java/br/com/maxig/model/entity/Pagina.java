@@ -1,11 +1,22 @@
 package br.com.maxig.model.entity;
 
-import java.util.*;
-import java.math.*;
-import javax.validation.constraints.*;
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+
 import org.hibernate.validator.constraints.NotEmpty;
+
+import br.com.coder.arqprime.model.entity.BaseEntity;
 
 @XmlRootElement
 @Entity @Table(name="pagina")

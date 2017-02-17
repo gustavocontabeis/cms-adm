@@ -19,6 +19,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import br.com.coder.arqprime.model.entity.BaseEntity;
+
 @XmlRootElement
 @Entity @Table(name="banner")
 @NamedQueries(value={

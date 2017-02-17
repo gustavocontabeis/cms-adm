@@ -8,8 +8,8 @@ import javax.persistence.NoResultException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
-import br.com.maxig.model.dao.BaseDAO;
-import br.com.maxig.model.entity.usuarios.Usuario;
+import br.com.coder.arqprime.model.dao.BaseDAO;
+import br.com.coder.arqprime.model.entity.usuarios.Usuario;
 
 @Named
 public class UsuarioDAO extends BaseDAO<Usuario> {

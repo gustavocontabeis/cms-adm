@@ -3,7 +3,6 @@ package br.com.maxig.web.jsf.managedbeans;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
-import java.net.URLEncoder;
 import java.util.Properties;
 
 import javax.annotation.PostConstruct;
@@ -18,14 +17,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import br.com.maxig.model.dao.ConfiguracaoDAO;
-import br.com.maxig.model.dao.DaoException;
+import br.com.coder.arqprime.model.dao.DaoException;
+import br.com.coder.arqprime.model.entity.usuarios.Usuario;
 import br.com.maxig.model.dao.usuarios.UsuarioDAO;
-import br.com.maxig.model.entity.usuarios.Usuario;
 import br.com.maxig.model.utils.GenerateMD5;
 
 @Named @SessionScoped

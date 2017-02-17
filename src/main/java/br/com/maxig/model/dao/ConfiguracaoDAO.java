@@ -3,6 +3,8 @@ package br.com.maxig.model.dao;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
+import br.com.coder.arqprime.model.dao.BaseDAO;
+import br.com.coder.arqprime.model.dao.DaoException;
 import br.com.maxig.model.entity.Configuracao;
 
 public class ConfiguracaoDAO extends BaseDAO<Configuracao> {

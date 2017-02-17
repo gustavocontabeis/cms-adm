@@ -2,7 +2,6 @@ package br.com.maxig.web.jsf.converters;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-import java.util.List;
 import java.util.logging.Logger;
 
 import javax.faces.component.UIComponent;
@@ -11,12 +10,11 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
-import br.com.maxig.model.dao.BaseDAO;
-import br.com.maxig.model.dao.DaoException;
-import br.com.maxig.model.entity.BaseEntity;
+import br.com.coder.arqprime.model.dao.BaseDAO;
+import br.com.coder.arqprime.model.entity.BaseEntity;
+
 
 @FacesConverter("serializableConverter")
 public class SerializableConverter implements Converter {

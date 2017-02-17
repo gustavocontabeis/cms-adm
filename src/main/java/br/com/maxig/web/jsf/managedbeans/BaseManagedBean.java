@@ -1,21 +1,13 @@
 package br.com.maxig.web.jsf.managedbeans;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
 
-import br.com.maxig.model.dao.BaseDAO;
-import br.com.maxig.model.dao.DaoException;
-import br.com.maxig.model.entity.BaseEntity;
-import br.com.maxig.model.utils.Filtro;
 import br.com.maxig.model.utils.I18nUtils;
 
 public class BaseManagedBean implements Serializable {

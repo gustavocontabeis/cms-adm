@@ -8,12 +8,12 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
-import br.com.maxig.model.dao.BaseDAO;
-import br.com.maxig.model.dao.DaoException;
-import br.com.maxig.model.entity.BaseEntity;
+import br.com.coder.arqprime.model.dao.BaseDAO;
+import br.com.coder.arqprime.model.dao.DaoException;
+import br.com.coder.arqprime.model.entity.BaseEntity;
+
 
 /**
 <p:selectOneMenu id="logradouro" value="#{imovelManagedBean.imovel.logradouro}" required="true">

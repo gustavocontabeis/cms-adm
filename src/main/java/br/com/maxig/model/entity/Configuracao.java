@@ -11,6 +11,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import br.com.coder.arqprime.model.entity.BaseEntity;
+
 @Entity
 @Table(name="CONFIGURACAO", 
 	indexes={

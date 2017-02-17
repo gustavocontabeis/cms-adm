@@ -1,6 +1,5 @@
-<project 	xmlns="http://maven.apache.org/POM/4.0.0" 
-			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-			xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.maxigenios</groupId>
 	<artifactId>cms-adm</artifactId>
@@ -8,7 +7,19 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>cms-adm</name>
 	<url>http://maven.apache.org</url>
+
+	<!-- <parent> <groupId>br.com.maxig</groupId> <artifactId>arqprime</artifactId> 
+		<version>1.0.0-SNAPSHOT</version> <relativePath>../arqprime/pom.xml</relativePath> 
+		</parent> -->
+
 	<dependencies>
+
+		<dependency>
+			<groupId>br.com.coder</groupId>
+			<artifactId>arqprime</artifactId>
+			<version>1.0.0</version>
+			<scope>compile</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -56,14 +67,8 @@
 			<version>4.0.0</version>
 		</dependency>
 
-<!--
-                <dependency>
-			<groupId>org.primefaces.themes</groupId>
-			<artifactId>themes-project</artifactId>
-			<version>1.0.10</version>
-                        <scope>compile</scope>
-		</dependency>
--->
+		<!-- <dependency> <groupId>org.primefaces.themes</groupId> <artifactId>themes-project</artifactId> 
+			<version>1.0.10</version> <scope>compile</scope> </dependency> -->
 
 		<!-- -->
 		<dependency>
@@ -96,13 +101,8 @@
 			<artifactId>commons-digester</artifactId>
 			<version>2.1</version>
 		</dependency>
-		<!-- 
-		<dependency>
-		    <groupId>commons-configuration</groupId>
-		    <artifactId>commons-configuration</artifactId>
-		    <version>1.10</version>
-		</dependency>
-		 -->
+		<!-- <dependency> <groupId>commons-configuration</groupId> <artifactId>commons-configuration</artifactId> 
+			<version>1.10</version> </dependency> -->
 
 		<!-- -->
 		<dependency>
@@ -146,21 +146,15 @@
 			<version>2.3.2</version>
 			<scope>compile</scope>
 		</dependency>
-		<!-- 
+		<!-- <dependency> <groupId>mysql</groupId> <artifactId>mysql-connector-java</artifactId> 
+			<version>5.1.6</version> <scope>compile</scope> </dependency> -->
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.6</version>
+			<groupId>org.jboss.weld.servlet</groupId>
+			<artifactId>weld-servlet</artifactId>
+			<version>2.4.1.Final</version>
 			<scope>compile</scope>
 		</dependency>
-		-->
-		<dependency>
-		  <groupId>org.jboss.weld.servlet</groupId>
-		  <artifactId>weld-servlet</artifactId>
-		  <version>2.4.1.Final</version>
-		  <scope>compile</scope>
-		</dependency>
-		
+
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
@@ -172,7 +166,7 @@
 			<artifactId>mail</artifactId>
 			<version>1.4.7</version>
 		</dependency>
-		
+
 	</dependencies>
 
 	<repositories>

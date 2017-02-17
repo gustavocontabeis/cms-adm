@@ -3,6 +3,7 @@ package br.com.maxig.model.dao;
 
 import javax.inject.Named;
 
+import br.com.coder.arqprime.model.dao.BaseDAO;
 import br.com.maxig.model.entity.Arquivo;
 
 @Named

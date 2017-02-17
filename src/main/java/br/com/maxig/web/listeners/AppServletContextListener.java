@@ -6,9 +6,9 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-import br.com.maxig.model.dao.DaoException;
+import br.com.coder.arqprime.model.dao.DaoException;
+import br.com.coder.arqprime.model.entity.usuarios.Usuario;
 import br.com.maxig.model.dao.usuarios.UsuarioDAO;
-import br.com.maxig.model.entity.usuarios.Usuario;
 import br.com.maxig.model.utils.GenerateMD5;
 
 @WebListener

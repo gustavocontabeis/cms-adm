@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 
-import br.com.maxig.model.dao.DaoException;
+import br.com.coder.arqprime.model.dao.DaoException;
 import br.com.maxig.model.dao.ImagemDAO;
 import br.com.maxig.model.entity.Arquivo;
 

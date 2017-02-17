@@ -10,8 +10,8 @@ import javax.inject.Named;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
+import br.com.coder.arqprime.model.dao.DaoException;
 import br.com.maxig.model.dao.ArquivoDAO;
-import br.com.maxig.model.dao.DaoException;
 import br.com.maxig.model.dao.GaleriaDAO;
 import br.com.maxig.model.entity.Arquivo;
 import br.com.maxig.model.entity.Galeria;
