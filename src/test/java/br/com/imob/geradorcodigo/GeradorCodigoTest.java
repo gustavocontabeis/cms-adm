@@ -40,7 +40,7 @@ public class GeradorCodigoTest{
 		aplicacao = new Aplicacao();
 		aplicacao.setPackageApp("br.com.maxig");
 		aplicacao.setWebAppPath("/home/caixa/coder/projects/cms-adm/src/main/webapp");//caixa
-		objeto = new br.com.maxig.model.entity.Galeria();
+		objeto = new br.com.coder.cms.model.entity.Galeria();
 	}
 	
 	@Test //@Ignore
