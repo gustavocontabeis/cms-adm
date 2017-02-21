@@ -13,9 +13,10 @@ import org.primefaces.model.UploadedFile;
 import br.com.coder.arqprime.model.dao.DaoException;
 import br.com.coder.arqprime.model.entity.Arquivo;
 import br.com.coder.cms.model.dao.GaleriaDAO;
-import br.com.coder.cms.model.dao.app.ArquivoDAO;
+import br.com.coder.cms.model.dao.app.usuarios.ArquivoDAO;
 import br.com.coder.cms.model.entity.Galeria;
 import br.com.coder.cms.model.entity.TipoGaleria;
+import br.com.coder.cms.web.jsf.managedbeans.app.CrudManagedBean;
 
 @Named
 @SessionScoped

@@ -40,9 +40,9 @@
 		<property name="hbm2ddl.auto">create</property>
 
 		<mapping class="br.com.coder.arqprime.model.entity.Arquivo" />
-		<mapping class="br.com.coder.arqprime.model.entity.usuarios.Usuario" />
-		<mapping class="br.com.coder.arqprime.model.entity.usuarios.PerfilAcesso" />
-		<mapping class="br.com.coder.arqprime.model.entity.usuarios.UsuarioPerfil" />
+		<mapping class="br.com.coder.arqprime.model.entity.app.usuarios.Usuario" />
+		<mapping class="br.com.coder.arqprime.model.entity.app.usuarios.PerfilAcesso" />
+		<mapping class="br.com.coder.arqprime.model.entity.app.usuarios.UsuarioPerfil" />
 		<mapping class="br.com.coder.cms.model.entity.Banner" />
 		<mapping class="br.com.coder.cms.model.entity.Pagina" />
 		<mapping class="br.com.coder.cms.model.entity.Galeria" />

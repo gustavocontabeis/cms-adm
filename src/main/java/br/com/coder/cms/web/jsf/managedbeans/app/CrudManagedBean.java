@@ -1,4 +1,4 @@
-package br.com.coder.cms.web.jsf.managedbeans;
+package br.com.coder.cms.web.jsf.managedbeans.app;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;

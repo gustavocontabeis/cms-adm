@@ -1,4 +1,4 @@
-package br.com.coder.cms.web.jsf.managedbeans;
+package br.com.coder.cms.web.jsf.managedbeans.app;
 
 import java.util.List;
 import java.util.Map;
@@ -12,7 +12,7 @@ import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
 import br.com.coder.arqprime.model.dao.DaoException;
-import br.com.coder.arqprime.model.entity.usuarios.PerfilAcesso;
+import br.com.coder.arqprime.model.entity.app.usuarios.PerfilAcesso;
 import br.com.coder.arqprime.model.utils.Filtro;
 import br.com.coder.cms.model.dao.app.usuarios.PerfilAcessoDAO;
 

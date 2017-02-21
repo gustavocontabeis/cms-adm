@@ -1,4 +1,4 @@
-package br.com.coder.cms.web.jsf.managedbeans;
+package br.com.coder.cms.web.jsf.managedbeans.app;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -21,9 +21,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import br.com.coder.arqprime.model.dao.DaoException;
-import br.com.coder.arqprime.model.entity.usuarios.Usuario;
+import br.com.coder.arqprime.model.entity.app.usuarios.Usuario;
 import br.com.coder.arqprime.model.utils.GenerateMD5;
-import br.com.coder.cms.model.dao.app.UsuarioDAO;
+import br.com.coder.cms.model.dao.app.usuarios.UsuarioDAO;
 
 @Named @SessionScoped
 public class LoginManagedBean implements Serializable {

@@ -1,4 +1,4 @@
-package br.com.coder.cms.model.dao.app;
+package br.com.coder.cms.model.dao.app.usuarios;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import br.com.coder.arqprime.model.dao.BaseDAO;
-import br.com.coder.arqprime.model.entity.usuarios.Usuario;
+import br.com.coder.arqprime.model.entity.app.usuarios.Usuario;
 
 //@Dependent
 @Named

@@ -13,7 +13,7 @@ import org.apache.commons.lang.StringUtils;
 
 import br.com.coder.arqprime.model.dao.DaoException;
 import br.com.coder.arqprime.model.entity.Arquivo;
-import br.com.coder.cms.model.dao.app.ImagemDAO;
+import br.com.coder.cms.model.dao.app.usuarios.ImagemDAO;
 
 import java.io.ByteArrayInputStream;
 

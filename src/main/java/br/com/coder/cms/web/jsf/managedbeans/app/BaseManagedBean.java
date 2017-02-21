@@ -1,4 +1,4 @@
-package br.com.coder.cms.web.jsf.managedbeans;
+package br.com.coder.cms.web.jsf.managedbeans.app;
 
 import java.io.Serializable;
 
@@ -40,12 +40,12 @@ public class BaseManagedBean implements Serializable {
 
 	protected void message(String component, String msg) {
 		msg = I18nUtils.getMessage(msg); 
-		FacesContext.getCurrentInstance().addMessage(component, new FacesMessage(msg));
+		FacesContext.getCurrentInstance().addMessage(component, new FacesMessage("Importante", msg));
 	}
 
 	protected void messageError(String component, String msg) {
 		msg = I18nUtils.getMessage(msg);
-		FacesContext.getCurrentInstance().addMessage(component, new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg));
+		FacesContext.getCurrentInstance().addMessage(component, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!", msg));
 	}
 	
 	@PostConstruct

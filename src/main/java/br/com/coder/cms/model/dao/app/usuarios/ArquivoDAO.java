@@ -1,4 +1,4 @@
-package br.com.coder.cms.model.dao.app;
+package br.com.coder.cms.model.dao.app.usuarios;
 
 import javax.inject.Named;
 

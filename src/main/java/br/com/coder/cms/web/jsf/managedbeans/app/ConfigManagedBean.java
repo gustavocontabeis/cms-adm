@@ -1,4 +1,4 @@
-package br.com.coder.cms.web.jsf.managedbeans;
+package br.com.coder.cms.web.jsf.managedbeans.app;
 
 import java.util.ArrayList;
 import java.util.List;
