@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 
-import br.com.coder.arqprime.model.dao.DaoException;
+import br.com.coder.arqprime.model.dao.app.DaoException;
+import br.com.coder.arqprime.model.dao.app.ImagemDAO;
 import br.com.coder.arqprime.model.entity.Arquivo;
-import br.com.coder.cms.model.dao.app.ImagemDAO;
 
 //import com.sun.xml.internal.messaging.saaj.util.ByteInputStream;
 

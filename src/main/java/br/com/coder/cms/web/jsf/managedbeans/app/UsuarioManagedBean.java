@@ -24,13 +24,13 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import br.com.coder.arqprime.model.dao.DaoException;
+import br.com.coder.arqprime.model.dao.app.DaoException;
+import br.com.coder.arqprime.model.dao.app.usuarios.PerfilAcessoDAO;
+import br.com.coder.arqprime.model.dao.app.usuarios.UsuarioDAO;
 import br.com.coder.arqprime.model.entity.BaseEntity;
 import br.com.coder.arqprime.model.entity.app.usuarios.PerfilAcesso;
 import br.com.coder.arqprime.model.entity.app.usuarios.Usuario;
 import br.com.coder.arqprime.model.utils.GenerateMD5;
-import br.com.coder.cms.model.dao.app.usuarios.PerfilAcessoDAO;
-import br.com.coder.cms.model.dao.app.usuarios.UsuarioDAO;
 
 @Named @ViewScoped
 public class UsuarioManagedBean extends CrudManagedBean<Usuario, UsuarioDAO> {

@@ -11,10 +11,10 @@ import javax.faces.event.ActionEvent;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
-import br.com.coder.arqprime.model.dao.DaoException;
+import br.com.coder.arqprime.model.dao.app.DaoException;
+import br.com.coder.arqprime.model.dao.app.usuarios.PerfilAcessoDAO;
 import br.com.coder.arqprime.model.entity.app.usuarios.PerfilAcesso;
 import br.com.coder.arqprime.model.utils.Filtro;
-import br.com.coder.cms.model.dao.app.usuarios.PerfilAcessoDAO;
 
 @ManagedBean
 @ViewScoped

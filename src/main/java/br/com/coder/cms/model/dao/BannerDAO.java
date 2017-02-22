@@ -2,7 +2,7 @@ package br.com.coder.cms.model.dao;
 
 import javax.inject.Named;
 
-import br.com.coder.arqprime.model.dao.BaseDAO;
+import br.com.coder.arqprime.model.dao.app.BaseDAO;
 import br.com.coder.cms.model.entity.Banner;
 
 @Named

@@ -13,8 +13,8 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
-import br.com.coder.arqprime.model.dao.BaseDAO;
-import br.com.coder.arqprime.model.dao.DaoException;
+import br.com.coder.arqprime.model.dao.app.BaseDAO;
+import br.com.coder.arqprime.model.dao.app.DaoException;
 import br.com.coder.arqprime.model.entity.BaseEntity;
 import br.com.coder.arqprime.model.utils.Filtro;
 

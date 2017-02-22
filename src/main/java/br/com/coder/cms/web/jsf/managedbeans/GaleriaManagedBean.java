@@ -10,10 +10,10 @@ import javax.inject.Named;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
-import br.com.coder.arqprime.model.dao.DaoException;
+import br.com.coder.arqprime.model.dao.app.ArquivoDAO;
+import br.com.coder.arqprime.model.dao.app.DaoException;
 import br.com.coder.arqprime.model.entity.Arquivo;
 import br.com.coder.cms.model.dao.GaleriaDAO;
-import br.com.coder.cms.model.dao.app.ArquivoDAO;
 import br.com.coder.cms.model.entity.Galeria;
 import br.com.coder.cms.model.entity.TipoGaleria;
 import br.com.coder.cms.web.jsf.managedbeans.app.CrudManagedBean;
@@ -28,7 +28,7 @@ public class GaleriaManagedBean extends CrudManagedBean<Galeria, GaleriaDAO> {
 
 	@Inject
 	private GaleriaDAO dao;
-	@Inject
+	@Inject 
 	private ArquivoDAO arquivoDAO;
 
 	@PostConstruct

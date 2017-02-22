@@ -6,10 +6,10 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-import br.com.coder.arqprime.model.dao.DaoException;
+import br.com.coder.arqprime.model.dao.app.DaoException;
+import br.com.coder.arqprime.model.dao.app.usuarios.UsuarioDAO;
 import br.com.coder.arqprime.model.entity.app.usuarios.Usuario;
 import br.com.coder.arqprime.model.utils.GenerateMD5;
-import br.com.coder.cms.model.dao.app.usuarios.UsuarioDAO;
 
 @WebListener
 public class AppServletContextListener implements ServletContextListener{
