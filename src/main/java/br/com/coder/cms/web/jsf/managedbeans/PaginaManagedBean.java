@@ -6,10 +6,10 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.com.coder.arqprime.web.jsf.managedbeans.app.CrudManagedBean;
 import br.com.coder.cms.model.dao.PaginaDAO;
 import br.com.coder.cms.model.entity.Pagina;
 import br.com.coder.cms.model.entity.TipoPagina;
-import br.com.coder.cms.web.jsf.managedbeans.app.CrudManagedBean;
 
 @Named @ViewScoped
 public class PaginaManagedBean extends CrudManagedBean<Pagina, PaginaDAO> {

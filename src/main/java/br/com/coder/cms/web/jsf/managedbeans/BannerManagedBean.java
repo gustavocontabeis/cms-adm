@@ -14,9 +14,9 @@ import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
 
 import br.com.coder.arqprime.model.entity.Arquivo;
+import br.com.coder.arqprime.web.jsf.managedbeans.app.CrudManagedBean;
 import br.com.coder.cms.model.dao.BannerDAO;
 import br.com.coder.cms.model.entity.Banner;
-import br.com.coder.cms.web.jsf.managedbeans.app.CrudManagedBean;
 
 @Named
 @SessionScoped
