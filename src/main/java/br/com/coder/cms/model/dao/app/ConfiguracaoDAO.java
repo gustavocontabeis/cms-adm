@@ -1,11 +1,11 @@
-package br.com.coder.cms.model.dao.app.usuarios;
+package br.com.coder.cms.model.dao.app;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import br.com.coder.arqprime.model.dao.BaseDAO;
 import br.com.coder.arqprime.model.dao.DaoException;
-import br.com.coder.cms.model.entity.Configuracao;
+import br.com.coder.cms.model.entity.app.Configuracao;
 
 public class ConfiguracaoDAO extends BaseDAO<Configuracao> {
 	

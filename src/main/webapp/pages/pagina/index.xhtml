@@ -34,10 +34,10 @@
 					<p:inputText id="descricao" value="#{paginaManagedBean.entity.descricao}" required="false" maxlength="255" />
 
 					<p:outputLabel for="conteudo" value="#{labels['pagina.conteudo']}" />
-					<p:editor id="conteudo" value="#{paginaManagedBean.entity.conteudo}" required="true" rows="5" cols="100" />
+					<p:editor id="conteudo" value="#{paginaManagedBean.entity.conteudo}" required="true" />
 
 					<p:outputLabel for="intro" value="#{labels['pagina.intro']}" />
-					<p:editor id="intro" value="#{paginaManagedBean.entity.intro}" required="true" rows="5" cols="100" />
+					<p:editor id="intro" value="#{paginaManagedBean.entity.intro}" required="true" />
 
 					<p:outputLabel for="keywords" value="#{labels['pagina.keywords']}" />
 					<p:inputText id="keywords" value="#{paginaManagedBean.entity.keywords}" required="true" size="100" maxlength="100" />

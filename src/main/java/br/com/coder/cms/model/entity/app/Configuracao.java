@@ -1,4 +1,4 @@
-package br.com.coder.cms.model.entity;
+package br.com.coder.cms.model.entity.app;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

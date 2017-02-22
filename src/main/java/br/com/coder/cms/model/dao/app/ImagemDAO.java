@@ -1,5 +1,5 @@
 //ADICIONAR O PACOTE!<bean id="imagemDAO" class="ImagemDAO"></bean>
-package br.com.coder.cms.model.dao.app.usuarios;
+package br.com.coder.cms.model.dao.app;
 
 import javax.inject.Named;
 

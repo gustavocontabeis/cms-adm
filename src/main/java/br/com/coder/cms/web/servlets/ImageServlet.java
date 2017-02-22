@@ -1,5 +1,6 @@
 package br.com.coder.cms.web.servlets;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -13,9 +14,7 @@ import org.apache.commons.lang.StringUtils;
 
 import br.com.coder.arqprime.model.dao.DaoException;
 import br.com.coder.arqprime.model.entity.Arquivo;
-import br.com.coder.cms.model.dao.app.usuarios.ImagemDAO;
-
-import java.io.ByteArrayInputStream;
+import br.com.coder.cms.model.dao.app.ImagemDAO;
 
 //import com.sun.xml.internal.messaging.saaj.util.ByteInputStream;
 
